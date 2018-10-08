@@ -1,28 +1,52 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import './App.css';
+import Header from './components/Header';
+import Home from './components/Home';
+import PollViewer from './components/PollViewer';
+import PollCreator from './components/PollCreator';
+import LeaderBoard from './components/LeaderBoard';
+import Login from './components/Login';
+import { getInitialData } from './actions/shared';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(getInitialData());
+  }
+
   render() {
+    if (this.props.location.pathname !== '/login' && this.props.authedUser === null) {
+      this.props.history.push('/login');
+    }
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header />
+        <div className="PageContainer">
+          <Route exact path='/' render={() => (
+            <Home />
+          )} />
+          <Route exact path='/poll/:id' render={() => (
+            <PollViewer />
+          )} />
+          <Route exact path='/create-poll' render={() => (
+            <PollCreator />
+          )} />
+          <Route exact path='/leader-board' render={() => (
+            <LeaderBoard />
+          )} />
+          <Route path='/login' render={(props) => (
+            <Login history={props.history} />
+          )} />
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  authedUser: state.authedUser
+});
+
+export default connect(mapStateToProps)(App);
