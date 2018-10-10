@@ -1,8 +1,9 @@
 import React from 'react';
+import LeaderList from './LeaderList';
 
 const LeaderBoard = (props) => (
   <div className="LeaderBoard">
-    LeaderBoard
+    <LeaderList />
   </div>
 )
 

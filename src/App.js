@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className="PageContainer">
+        <div className="PageContainer p-5">
           <Route exact path='/' render={() => (
             <Home />
           )} />

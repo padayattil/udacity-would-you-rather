@@ -1,25 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const PollListItem = (props) => {
-  const avatarImgStyle = {
-    width: "180px",
-    paddingTop: "100%",
-    backgroundImage: "url(" + props.users[props.author].avatarURL + ")",
-    backgroundRepeat: "no-repeat"
-  }
   return (
-    <div className="poll-card card">
-      <div className="card-header text-left">
-        Featured
-      </div>
-      <div className="row poll-card-body">
-        <div className="col-md-auto" style={avatarImgStyle}></div>
-        <div className="col-md-auto">
-          <div className="card-block px-2 text-left">
-            <h4 className="card-title">Would you rather</h4>
-            <p className="card-text">{props.optionOne.text.slice(0,20)+'... or '+props.optionTwo.text.slice(0,20)+'...'}</p>
-            <a href="/foo" className="btn btn-primary">View Poll</a>
+    <div className="container card card-item">
+      <div className="row">
+        <div className="col col-md-2 p-0">
+          <img src={props.users[props.author].avatarURL} className="float-left rounded avatar-image" alt="avatar" />
+        </div>
+        <div className="col p-0">
+          <div>
+            <h4>Would you rather</h4>
+            <p>{`${props.optionOne.text.slice(0,20)}... or ${props.optionTwo.text.slice(0,20)} ...`}</p>
+            <hr/>
+            <Link className="btn btn-primary" to={`/poll/${props.id}`}>View Poll</Link>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import React from 'react';
 import PollBoard from './PollBoard';
 
 const Home = (props) => (
-  <div className="Home">
+  <div className="">
     <PollBoard />
   </div>
 )

@@ -2,8 +2,18 @@
   text-align: center;
 }
 
-.poll-card-body {
-  height: 180px
+.card-item {
+  width: 768px;
+  height: 180px;
+}
+
+.poll-board {
+  width: 768px;
+}
+
+.avatar-image {
+  height: 100%;
+  max-width: 100%;
 }
 
 div.hr-or {

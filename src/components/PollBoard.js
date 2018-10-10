@@ -5,7 +5,7 @@ import PollList from './PollList';
 
 class PollBoard extends Component {
   state = {
-    pollType: 'answered'
+    pollType: 'unanswered',
   }
 
   handlePollTypeToggle() {
@@ -13,8 +13,13 @@ class PollBoard extends Component {
   }
 
   render() {
+    const polls = Object.values(this.props.polls).filter((poll) => {
+      if (this.state.pollType === 'answered')
+        return this.props.users.length !==0 && Boolean(this.props.users[this.props.authedUser].answers[poll.id])
+      return this.props.users.length !==0 && !Boolean(this.props.users[this.props.authedUser].answers[poll.id])
+    });
     return (
-      <div className="PollBoard">
+      <div className="card poll-board mx-auto">
         <ul className="nav nav-tabs justify-content-center nav-fill">
           <li className="nav-item">
             <a
@@ -29,14 +34,16 @@ class PollBoard extends Component {
               onClick={()=> this.handlePollTypeToggle()}>Answered</a>
           </li>
         </ul>
-        <PollList polls={Object.values(this.props.polls)} />
+        <PollList polls={polls} />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  polls: state.polls
+  polls: state.polls,
+  authedUser: state.authedUser,
+  users: state.users
 })
 
 export default connect(mapStateToProps)(PollBoard);

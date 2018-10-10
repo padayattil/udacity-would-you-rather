@@ -16,7 +16,6 @@ class Login extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.authedUser)
     if (this.props.authedUser !== null)
       this.props.history.push('/');
   }
