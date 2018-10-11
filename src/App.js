@@ -27,8 +27,8 @@ class App extends Component {
           <Route exact path='/' render={() => (
             <Home />
           )} />
-          <Route exact path='/poll/:id' render={() => (
-            <PollViewer />
+          <Route exact path='/poll/:poll_id' render={(props) => (
+            <PollViewer {...props} />
           )} />
           <Route exact path='/create-poll' render={() => (
             <PollCreator />
