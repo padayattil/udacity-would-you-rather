@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { get_score } from '../utils/common';
+import { getScore } from '../utils/common';
 
 const LeaderListItem = (props) => {
   return (
@@ -19,7 +19,7 @@ const LeaderListItem = (props) => {
         </div>
         <div className="col col-md-2 p-0 card">
           <p className="font-weight-bold">Score</p>
-          <p className="display-1">{get_score(props.user)}</p>
+          <p className="display-1">{getScore(props.user)}</p>
         </div>
       </div>
     </div>

@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
-import PollViewer from './components/PollViewer';
+import PollPrompt from './components/PollPrompt';
+import PollResults from './components/PollResult';
 import PollCreator from './components/PollCreator';
 import LeaderBoard from './components/LeaderBoard';
 import Login from './components/Login';
@@ -28,7 +29,10 @@ class App extends Component {
             <Home />
           )} />
           <Route exact path='/poll/:poll_id' render={(props) => (
-            <PollViewer {...props} />
+            <PollPrompt {...props} />
+          )} />
+          <Route exact path='/poll/:poll_id/results' render={(props) => (
+            <PollResults {...props} />
           )} />
           <Route exact path='/create-poll' render={() => (
             <PollCreator />
@@ -37,7 +41,7 @@ class App extends Component {
             <LeaderBoard />
           )} />
           <Route path='/login' render={(props) => (
-            <Login history={props.history} />
+            <Login {...props} />
           )} />
         </div>
       </div>

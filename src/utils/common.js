@@ -1,7 +1,11 @@
-export function get_score(user) {
+export function getScore(user) {
   return Object.keys(user['answers']).length + user['questions'].length;
 }
 
+export function objectSize(obj) {
+  return Object.getOwnPropertyNames(obj).length
+}
+
 export function isEmpty(obj){
-    return (Object.getOwnPropertyNames(obj).length === 0);
+    return (objectSize(obj) === 0);
 }

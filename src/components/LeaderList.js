@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import LeaderListItem from './LeaderListItem';
-import { get_score } from '../utils/common';
+import { getScore } from '../utils/common';
 
 const LeaderList = (props) => {
   return (
@@ -14,7 +14,7 @@ const LeaderList = (props) => {
 const mapStateToProps = (state) => ({
   users: Object.values(state.users)
     .sort(
-      (user1, user2) => (get_score(user1) < get_score(user2))
+      (user1, user2) => (getScore(user1) < getScore(user2))
     )
 })
 
