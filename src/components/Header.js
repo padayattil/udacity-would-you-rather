@@ -6,14 +6,14 @@ import { connect } from 'react-redux';
 import * as authedUser from '../actions/authedUser';
 
 const Header = (props) => (
-  <div className="Header">
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      {
-        !props.authedUser ?
-        <div className="Header">
-          <div><p className="font-weight-bold">Login</p></div>
-        </div>
+  <div className="bg-light">
+    {
+      !props.authedUser ?
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div><p className="font-weight-bold">Login</p></div>
+      </nav>
       :
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
@@ -26,10 +26,17 @@ const Header = (props) => (
               <Link className="nav-link" to="/leader-board">Leader Board</Link>
             </li>
           </ul>
-          <button className="btn btn-outline-info" type="submit" onClick={() => props.actions.logout()}>Log Out</button>
         </div>
-      }
-    </nav>
+        <div className="btn-group">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {props.users[props.authedUser].name}
+          </button>
+          <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <button className="dropdown-item" type="submit" onClick={() => props.actions.logout()}>Log Out</button>
+          </div>
+        </div>
+      </nav>
+    }
   </div>
 )
 
@@ -41,7 +48,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    authedUser: state.authedUser
+    authedUser: state.authedUser,
+    users: state.users
   };
 }
 

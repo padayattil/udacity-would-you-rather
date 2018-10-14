@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 
 import './App.css';
 import Header from './components/Header';
@@ -19,9 +20,18 @@ class App extends Component {
 
   render() {
     if (this.props.location.pathname !== '/login' && this.props.authedUser === null) {
-      this.props.history.push('/login');
+      this.props.history.push(`/login?redirect=${this.props.location.pathname}`);
       return <div>Redirecting to login!</div>;
     }
+    console.log(this.props.location.pathname);
+    if (this.props.location.pathname === '/login' && this.props.authedUser !== null) {
+      const queryParams = queryString.parse(this.props.location.search);
+      if (queryParams.redirect) {
+        this.props.history.push(queryParams.redirect);
+        return <div>Redirecting..</div>;
+      }
+    }
+
     return (
       <div className="App">
         <Header />
