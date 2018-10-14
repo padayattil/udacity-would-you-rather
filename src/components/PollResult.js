@@ -23,6 +23,9 @@ class PollResults extends Component {
     const totalVotes = optionOneVotes + optionTwoVotes;
     const optionOneVotePC = (optionOneVotes*100)/totalVotes;
     const optionTwoVotePC = 100 - optionOneVotePC;
+    console.log(
+      optionOneVotes, optionOneVotePC, optionTwoVotes, optionTwoVotePC, totalVotes
+    );
     const avatarStyle = {
       backgroundImage: `url('${this.props.users[poll.author].avatarURL}')`,
       width: "100%",
@@ -46,19 +49,19 @@ class PollResults extends Component {
           <div className="col p-10">
             <div className="card d-flex align-items-center">
               <p>Would you rather {poll.optionOne.text}</p>
-              <div className="progress w-75">
+              <div className="progress position-relative w-75">
                 <div className="progress-bar" role="progressbar" style={progressStyleOne} aria-valuenow={optionOneVotePC} aria-valuemin="0" aria-valuemax="100">
-                  {optionTwoVotePC}%
                 </div>
+                <small className="justify-content-center d-flex position-absolute w-100">{optionOneVotePC}%</small>
               </div>
               <p>{`Would you rather ${optionOneVotes} out of ${totalVotes} votes`}</p>
             </div>
             <div className="card d-flex align-items-center">
               <p>Would you rather {poll.optionTwo.text}</p>
-              <div className="progress w-75">
+              <div className="progress position-relative w-75">
                 <div className="progress-bar" role="progressbar" style={progressStyleTwo} aria-valuenow={optionTwoVotePC} aria-valuemin="0" aria-valuemax="100">
-                  {optionTwoVotePC}%
                 </div>
+                <small className="justify-content-center d-flex position-absolute w-100">{optionTwoVotePC}%</small>
               </div>
               <p>{`Would you rather ${optionTwoVotes} out of ${totalVotes} votes`}</p>
             </div>
