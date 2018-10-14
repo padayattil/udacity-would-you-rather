@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as pollActions from '../actions/polls';
 import { isEmpty } from '../utils/common';
+import NotFound from './NotFound';
 
 class PollResults extends Component {
 
@@ -15,6 +16,8 @@ class PollResults extends Component {
     if (isEmpty(this.props.users) || isEmpty(this.props.polls))
       return <div>Loading Results</div>;
     const poll = this.props.polls[this.props.match.params.poll_id];
+    if (!Boolean(poll))
+      return <NotFound />;
     const optionOneVotes = poll.optionOne.votes.length;
     const optionTwoVotes = poll.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;

@@ -23,7 +23,6 @@ class App extends Component {
       this.props.history.push(`/login?redirect=${this.props.location.pathname}`);
       return <div>Redirecting to login!</div>;
     }
-    console.log(this.props.location.pathname);
     if (this.props.location.pathname === '/login' && this.props.authedUser !== null) {
       const queryParams = queryString.parse(this.props.location.search);
       if (queryParams.redirect) {

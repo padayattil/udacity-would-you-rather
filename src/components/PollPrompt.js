@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as pollActions from '../actions/polls';
 import { isEmpty } from '../utils/common';
+import NotFound from './NotFound';
 
 class PollPrompt extends Component {
 
@@ -31,6 +32,9 @@ class PollPrompt extends Component {
       return <div>Loading Poll</div>;
 
     const poll = this.props.polls[this.props.match.params.poll_id]
+
+    if (!Boolean(poll))
+      return <NotFound />;
 
     if(this.props.users[this.props.authedUser].answers[poll.id])
       this.props.history.push(`/poll/${poll.id}/results`);
