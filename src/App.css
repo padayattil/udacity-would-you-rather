@@ -22,6 +22,11 @@
     vertical-align: middle;
 }
 
+legend {
+  width: fit-content;
+  text-align: right;
+}
+
 div.hr-or {
   margin-top: 20px;
   margin-bottom: 20px;
