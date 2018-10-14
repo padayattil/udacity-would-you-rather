@@ -63,6 +63,7 @@ class PollPrompt extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   users: state.users,
   polls: state.polls,

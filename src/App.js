@@ -20,6 +20,7 @@ class App extends Component {
   render() {
     if (this.props.location.pathname !== '/login' && this.props.authedUser === null) {
       this.props.history.push('/login');
+      return <div>Redirecting to login!</div>;
     }
     return (
       <div className="App">
@@ -34,8 +35,8 @@ class App extends Component {
           <Route exact path='/poll/:poll_id/results' render={(props) => (
             <PollResults {...props} />
           )} />
-          <Route exact path='/create-poll' render={() => (
-            <PollCreator />
+          <Route exact path='/create-poll' render={(props) => (
+            <PollCreator {...props} />
           )} />
           <Route exact path='/leader-board' render={() => (
             <LeaderBoard />
