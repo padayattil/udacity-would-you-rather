@@ -24,7 +24,6 @@ export function answerPoll(authedUser, qid, answer, history) {
   return (dispatch) => {
     API._saveQuestionAnswer({authedUser, qid, answer})
       .then(() => dispatch(updatePollAnswer(authedUser, qid, answer)))
-      .then(() => history.push(`/poll/${qid}/results`));
   }
 }
 

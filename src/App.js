@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 
 import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
-import PollPrompt from './components/PollPrompt';
-import PollResults from './components/PollResult';
+import PollDetail from './components/PollDetail';
 import PollCreator from './components/PollCreator';
 import LeaderBoard from './components/LeaderBoard';
 import Login from './components/Login';
@@ -20,14 +19,12 @@ class App extends Component {
 
   render() {
     if (this.props.location.pathname !== '/login' && this.props.authedUser === null) {
-      this.props.history.push(`/login?redirect=${this.props.location.pathname}`);
-      return <div>Redirecting to login!</div>;
+      return <Redirect to={`/login?redirect=${this.props.location.pathname}`} />;
     }
     if (this.props.location.pathname === '/login' && this.props.authedUser !== null) {
       const queryParams = queryString.parse(this.props.location.search);
       if (queryParams.redirect) {
-        this.props.history.push(queryParams.redirect);
-        return <div>Redirecting..</div>;
+        return <Redirect to={queryParams.redirect} />;
       }
     }
 
@@ -38,16 +35,13 @@ class App extends Component {
           <Route exact path='/' render={() => (
             <Home />
           )} />
-          <Route exact path='/poll/:poll_id' render={(props) => (
-            <PollPrompt {...props} />
+          <Route exact path='/questions/:poll_id' render={(props) => (
+            <PollDetail {...props} />
           )} />
-          <Route exact path='/poll/:poll_id/results' render={(props) => (
-            <PollResults {...props} />
-          )} />
-          <Route exact path='/create-poll' render={(props) => (
+          <Route exact path='/add' render={(props) => (
             <PollCreator {...props} />
           )} />
-          <Route exact path='/leader-board' render={() => (
+          <Route exact path='/leaderboard' render={() => (
             <LeaderBoard />
           )} />
           <Route path='/login' render={(props) => (

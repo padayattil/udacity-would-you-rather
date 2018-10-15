@@ -8,8 +8,7 @@ class PollBoard extends Component {
     pollType: 'unanswered',
   }
 
-  selectPollType(e, pollType) {
-    e.preventDefault();
+  selectPollType(pollType) {
     this.setState(state => ({...state, pollType}));
   }
 
@@ -26,13 +25,13 @@ class PollBoard extends Component {
             <a
               className={this.state.pollType === 'unanswered' ? "nav-link active" : "nav-link"}
               href="#unanswered"
-              onClick={(e)=> this.selectPollType(e, 'unanswered')}>Unanswered</a>
+              onClick={(e)=> this.selectPollType('unanswered')}>Unanswered</a>
           </li>
           <li className="nav-item">
             <a
               className={this.state.pollType === 'answered' ? "nav-link active" : "nav-link"}
               href="#answered"
-              onClick={(e)=> this.selectPollType(e, 'answered')}>Answered</a>
+              onClick={(e)=> this.selectPollType('answered')}>Answered</a>
           </li>
         </ul>
         {polls.length === 0 ? <div>No Polls to Show</div> : <PollList polls={polls} />}

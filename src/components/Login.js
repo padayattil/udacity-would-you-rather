@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import * as authedUser from '../actions/authedUser';
 
@@ -8,16 +9,6 @@ class Login extends Component {
 
   state = {
     selectedUserId: null
-  }
-
-  componentDidMount() {
-    if (this.props.authedUser !== null)
-      this.props.history.push('/');
-  }
-
-  componentDidUpdate() {
-    if (this.props.authedUser !== null)
-      this.props.history.push('/');
   }
 
   handleUserSelect(user_id) {
@@ -31,7 +22,7 @@ class Login extends Component {
   }
 
   render() {
-    return (
+    return this.props.authedUser !== null ? <Redirect to={`/`} /> : (
       <div className="Login">
         <form>
           <div className="form-group">

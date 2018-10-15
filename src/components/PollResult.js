@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as pollActions from '../actions/polls';
-import { isEmpty } from '../utils/common';
+import { isEmpty, toPrecisionString } from '../utils/common';
 import NotFound from './NotFound';
 
 class PollResults extends Component {
@@ -56,7 +56,7 @@ class PollResults extends Component {
                   <div className="progress position-relative w-75">
                     <div className="progress-bar" role="progressbar" style={progressStyleOne} aria-valuenow={optionOneVotePC} aria-valuemin="0" aria-valuemax="100">
                     </div>
-                    <small className="justify-content-center d-flex position-absolute w-100">{optionOneVotePC}%</small>
+                    <small className="justify-content-center d-flex position-absolute w-100">{toPrecisionString(optionOneVotePC)}%</small>
                   </div>
                   <p>{`${optionOneVotes} out of ${totalVotes} votes`}</p>
                 </div>
@@ -73,7 +73,7 @@ class PollResults extends Component {
                   <div className="progress position-relative w-75">
                     <div className="progress-bar" role="progressbar" style={progressStyleTwo} aria-valuenow={optionTwoVotePC} aria-valuemin="0" aria-valuemax="100">
                     </div>
-                    <small className="justify-content-center d-flex position-absolute w-100">{optionTwoVotePC}%</small>
+                    <small className="justify-content-center d-flex position-absolute w-100">{toPrecisionString(optionTwoVotePC)}%</small>
                   </div>
                   <p>{`${optionTwoVotes} out of ${totalVotes} votes`}</p>
                 </div>

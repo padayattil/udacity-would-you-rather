@@ -36,9 +36,6 @@ class PollPrompt extends Component {
     if (!Boolean(poll))
       return <NotFound />;
 
-    if(this.props.users[this.props.authedUser].answers[poll.id])
-      this.props.history.push(`/poll/${poll.id}/results`);
-
     return this.props.users[this.props.authedUser].answers[poll.id] ? <div>Loading results...</div> : (
       <div className="container card card-item">
         <div className="row border bg-light p-10">

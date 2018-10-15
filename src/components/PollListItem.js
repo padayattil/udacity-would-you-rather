@@ -14,7 +14,7 @@ const PollListItem = (props) => {
             <h4>Would you rather</h4>
             <p>{`${props.optionOne.text.slice(0,20)}... or ${props.optionTwo.text.slice(0,20)} ...`}</p>
             <hr/>
-            <Link className="btn btn-primary" to={`/poll/${props.id}`}>View Poll</Link>
+            <Link className="btn btn-primary" to={`/questions/${props.id}`}>View Poll</Link>
           </div>
         </div>
       </div>
